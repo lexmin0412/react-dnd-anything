@@ -1,4 +1,4 @@
-# react-dnd-tree
+# React Dnd Tree
 
 ## Getting Started
 

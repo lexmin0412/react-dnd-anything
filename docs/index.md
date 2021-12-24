@@ -1,7 +1,7 @@
 ---
 hero:
-  title: react-dnd-tree
-  desc: react-dnd-tree site example
+  title: react-dnd-anything
+  desc: react-dnd-anything site example
   actions:
     - text: Getting Started
       link: /components
@@ -18,4 +18,4 @@ features:
 footer: Open-source MIT Licensed | Copyright © 2020<br />Powered by [dumi](https://d.umijs.org)
 ---
 
-## Hello react-dnd-tree!
+## Hello react-dnd-anything!

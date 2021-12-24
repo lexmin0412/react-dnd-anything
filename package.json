@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "react-dnd-tree",
+  "name": "react-dnd-anything",
   "version": "1.0.0",
   "scripts": {
     "start": "dumi dev",
