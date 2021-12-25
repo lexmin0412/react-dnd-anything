@@ -1,32 +1,32 @@
-# React Dnd Tree
+# React Dnd Anything
 
-## Getting Started
+## 开始
 
-Install dependencies,
+安装依赖，
 
 ```bash
 $ npm i
 ```
 
-Start the dev server,
+启动开发服务器,
 
 ```bash
 $ npm start
 ```
 
-Build documentation,
+构建文档,
 
 ```bash
 $ npm run docs:build
 ```
 
-Run test,
+运行测试,
 
 ```bash
 $ npm test
 ```
 
-Build library via `father-build`,
+使用 `father-build` 来构建组件库,
 
 ```bash
 $ npm run build

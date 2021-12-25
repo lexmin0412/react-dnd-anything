@@ -4,7 +4,7 @@ nav:
   path: /components
 ---
 
-## React DND Anything
+## React Dnd Anything
 
 ### Demo
 
