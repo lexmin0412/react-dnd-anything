@@ -1,15 +1,30 @@
-name: Deploy docs
-
+name: Deploy Docs
 on:
   push:
     branches:
       - main
 
 jobs:
-  deploy-doc:
+  main:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm i
-      - run: npm run deploy
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    # react项目为npm run-script build，vue项目改为npm run build
+    - name: 安装依赖
+      run: |
+        npm install
+    - name: 构建文档
+      run: |
+        npm run docs:build
+
+    # react项目的FOLDER为build，vue项目改为dist
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: docs-dist
