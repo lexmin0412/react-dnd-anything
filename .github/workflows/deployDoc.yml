@@ -35,6 +35,10 @@ jobs:
         npm run build
 
     - name: 发布组件库
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+        registry-url: https://registry.npmjs.org/
       run: |
         npm publish -access public
       env:
