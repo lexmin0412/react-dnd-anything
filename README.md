@@ -15,7 +15,7 @@
 ## Getting Started
 
 ```bash
-$npm i react-dnd-anything
+npm i react-dnd-anything
 ```
 
 ## Use it in React
