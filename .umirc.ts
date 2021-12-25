@@ -9,4 +9,8 @@ export default defineConfig({
   mode: 'site',
   base: process.env.NODE_ENV === 'production' ? '/react-dnd-anything/' : '/',
   publicPath: process.env.NODE_ENV === 'production' ? '/react-dnd-anything/' : '/',
+  navs: [{
+    title: 'GitHub',
+    path: 'https://github.com/lexmin0412/react-dnd-anything',
+  }],
 });
