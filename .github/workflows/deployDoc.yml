@@ -1,4 +1,4 @@
-name: Deploy Docs
+name: 部署文档及发布组件库
 on:
   push:
     branches:
@@ -34,7 +34,6 @@ jobs:
       run: |
         npm run build
 
-    - name: 发布组件库
     - uses: actions/setup-node@v1
       with:
         node-version: 12
