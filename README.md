@@ -1,33 +1,61 @@
 # React Dnd Anything
 
-## 开始
+洞悉拖拽本质，让交互随心所欲。[官方文档](https://lexmin0412.github.io/react-dnd-anything)
 
-安装依赖，
+<a href="https://lexmin0412.github.io/react-dnd-anything">
+ <img src="https://github.com/lexmin0412/react-dnd-anything/blob/main/docs/images/docs_home_preview.png" />
+</a>
 
-```bash
-$ npm i
-```
 
-启动开发服务器,
 
-```bash
-$ npm start
-```
+## 支持特性
 
-构建文档,
+- 🏠 列表拖拽排序
+
+## Getting Started
 
 ```bash
-$ npm run docs:build
+$npm i react-dnd-anything
 ```
 
-运行测试,
+## Use it in React
 
-```bash
-$ npm test
+```tsx
+import React, { useState } from 'react';
+import { DndAnything } from 'react-dnd-anything';
+
+const defaultList = [
+  {
+    id: '1',
+    title: 'item 1'
+  },
+  {
+    id: '2',
+    title: 'item 2'
+  },
+  {
+    id: '3',
+    title: 'item 3'
+  }
+]
+
+export default () => {
+
+  const [list, setList] = useState(defaultList)
+
+  const handleListUpdate = (list: any[]) => {
+    setList(list)
+  }
+
+  return (
+    <DndAnything
+      list={list}
+      onListUpdate={handleListUpdate}
+    />
+  )
+};
 ```
 
-使用 `father-build` 来构建组件库,
+## 更新日志
 
-```bash
-$ npm run build
-```
+[点我查看](https://github.com/lexmin0412/taro3-react-template/blob/main/CHANGELOG.md)
