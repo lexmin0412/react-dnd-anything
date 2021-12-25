@@ -17,14 +17,25 @@ jobs:
     - name: 安装依赖
       run: |
         npm install
+
     - name: 构建文档
       run: |
         npm run docs:build
 
     # react项目的FOLDER为build，vue项目改为dist
-    - name: Deploy
+    - name: 部署文档
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: docs-dist
+
+    - name: 构建组件库
+      run: |
+        npm run build
+
+    - name: 发布组件库
+      run: |
+        npm publish -access public
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
