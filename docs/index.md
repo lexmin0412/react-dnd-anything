@@ -1,7 +1,7 @@
 ---
 hero:
   title: React Dnd Anything
-  desc: React Dnd 组件库文档
+  desc: 洞悉拖拽本质，让交互随心所欲。
   actions:
     - text: 现在开始
       link: /components
