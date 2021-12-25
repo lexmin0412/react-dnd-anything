@@ -1,1 +1,1 @@
-export { default as DndTree } from './dnd-tree';
+export { default as DndAnything } from './react-dnd-anything';
