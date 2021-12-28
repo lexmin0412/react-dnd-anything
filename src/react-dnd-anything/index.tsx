@@ -1,18 +1,8 @@
 import React, {useMemo, DragEvent} from 'react'
 import { DND_ITEM_CLASS_PREFIX as CLS_PREFIX } from './constants/index'
+import { DragAndDropItem } from './types'
 
-interface DragAndDropItem {
-  /**
-   * 唯一标识，用于定位元素
-   */
-  id: string
-  /**
-   * 标题，用于在列表中展示
-   */
-  title: string
-}
-
-interface DragAndDropProps {
+export interface DragAndDropProps {
   /**
    * 数据列表
    */
@@ -21,13 +11,28 @@ interface DragAndDropProps {
    * 数据更新回调
    */
   onListUpdate: (list: DragAndDropItem[]) => void
+  /**
+   * 拖拽开始事件
+   */
+  onDragStart?: (event: DragEvent, item: DragAndDropItem) => void
+  /**
+   * 拖拽移动到某元素时触发
+   */
+  onDragOver?: (event: DragEvent, item: DragAndDropItem) => void
+  /**
+   * 松开鼠标时触发
+   */
+  onDrop?: (event: DragEvent, item: DragAndDropItem) => void
 }
 
 export default function DragAndDrop(props: DragAndDropProps) {
 
   const {
     list,
-    onListUpdate
+    onListUpdate,
+    onDragStart,
+    onDragOver,
+    onDrop
   } = props
 
   /**
@@ -38,16 +43,21 @@ export default function DragAndDrop(props: DragAndDropProps) {
     return classList.join(' ')
   }, [])
 
-  const onDragStart = (event: DragEvent, item: DragAndDropItem) => {
-    console.log('onDragStart', item);
+  const handleDragStart = (event: DragEvent, item: DragAndDropItem) => {
     event?.dataTransfer?.setData('id', item.id)
+
+    // 触发回调
+    onDragStart && onDragStart(event, item)
   }
 
-  const onDragOver = (event: DragEvent, item: DragAndDropItem) => {
+  const handleDragOver = (event: DragEvent, item: DragAndDropItem) => {
     event.preventDefault()
+
+    // 触发回调
+    onDragOver && onDragOver(event, item)
   }
 
-  const onDrop = (event: DragEvent, item: DragAndDropItem) => {
+  const handleDrop = (event: DragEvent, item: DragAndDropItem) => {
     const sourceId = event?.dataTransfer?.getData('id')
     // 过滤自己
     if ( item.id === sourceId ) {
@@ -64,6 +74,9 @@ export default function DragAndDrop(props: DragAndDropProps) {
       toChangeList.splice(targetIndex, 0, sourceItem)
     }
     onListUpdate(toChangeList)
+
+    // 触发回调
+    onDrop && onDrop(event, item)
   }
 
   const renderChild = (props: DragAndDropItem) => {
@@ -79,9 +92,9 @@ export default function DragAndDrop(props: DragAndDropProps) {
       <div
         className={classNames}
         key={props.id}
-        onDragStart={event => onDragStart(event, props)}
-        onDragOver={event => onDragOver(event, props)}
-        onDrop={event => onDrop(event, props)}
+        onDragStart={event => handleDragStart(event, props)}
+        onDragOver={event => handleDragOver(event, props)}
+        onDrop={event => handleDrop(event, props)}
         draggable={true}
       >
         {props.title}
