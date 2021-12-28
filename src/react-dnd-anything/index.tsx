@@ -1,6 +1,7 @@
 import React, {useMemo, DragEvent} from 'react'
 import { DND_ITEM_CLASS_PREFIX as CLS_PREFIX } from './constants/index'
 import { DragAndDropItem } from './types'
+import './index.less'
 
 export interface DragAndDropProps {
   /**
