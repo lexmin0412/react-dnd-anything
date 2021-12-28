@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
-import { DndAnything, DndDragStartEvent } from 'react-dnd-anything';
-import { DndDragOverEvent, DndDropEvent } from '../types';
+import { DndAnything } from 'react-dnd-anything';
 
-const defaultList = [
+interface DragAndDropItem {
+  /**
+   * 唯一标识，用于定位元素
+   */
+  id: string
+  /**
+   * 标题，用于在列表中展示
+   */
+  title: string
+}
+
+const defaultList: DragAndDropItem[] = [
   {
     id: '1',
     title: 'item 1'
@@ -20,20 +30,19 @@ const defaultList = [
 export default () => {
 
   const [list, setList] = useState(defaultList)
-
   const handleListUpdate = (list: any[]) => {
     setList(list)
   }
 
-  const handleDragStart: DndDragStartEvent = (event, item) => {
+  const handleDragStart = (event: any, item: DragAndDropItem) => {
     console.log('handleDragStart', event, item);
   }
 
-  const handleDragOver: DndDragOverEvent = (event, item) => {
+  const handleDragOver = (event: any, item: DragAndDropItem) => {
     console.log('handleDragOver', event, item);
   }
 
-  const handleDrop: DndDropEvent = (event, item) => {
+  const handleDrop = (event: any, item: DragAndDropItem) => {
     console.log('handleDrop', event, item);
   }
 
