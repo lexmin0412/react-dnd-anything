@@ -58,4 +58,4 @@ export default () => {
 
 ## 更新日志
 
-[点我查看](https://github.com/lexmin0412/taro3-react-template/blob/main/CHANGELOG.md)
+[点我查看](https://github.com/lexmin0412/react-dnd-anything/blob/main/CHANGELOG.md)
