@@ -12,6 +12,11 @@ nav:
 
 <code src="./demo/default.tsx"></code>
 
+
+**监听拖拽事件**
+
+<code src="./demo/eventListener.tsx"></code>
+
 ### 关于 HTML5 拖拽
 
 - [Drag Event - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event)
