@@ -1,7 +1,7 @@
 {
   "private": false,
   "name": "react-dnd-anything",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "洞悉拖拽本质，让交互随心所欲。",
   "scripts": {
     "start": "dumi dev",
