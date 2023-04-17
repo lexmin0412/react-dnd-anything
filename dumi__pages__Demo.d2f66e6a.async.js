@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkreact_dnd_anything=self.webpackChunkreact_dnd_anything||[]).push([[448],{65149:function(i,n,e){e.r(n),e.d(n,{default:function(){return o}});var a=e(14570),d=e(67294),r=function(){var u=(0,a.UO)(),m=u.id,s=(0,a.WF)(),c=s.demos,f=c[m]||{},t=f.component;return t&&(0,d.createElement)(t)},o=r}}]);
