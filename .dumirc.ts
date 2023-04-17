@@ -6,4 +6,5 @@ export default defineConfig({
   themeConfig: {
     name: 'RDA',
   },
+  publicPath: '/react-dnd-anything/',
 });
