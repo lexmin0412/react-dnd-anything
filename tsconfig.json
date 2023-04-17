@@ -1,16 +1,16 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "jsx": "react",
-    "esModuleInterop": true,
-    "types": ["jest"],
     "strict": true,
-    "skipLibCheck": true,
     "declaration": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
     "paths": {
-      "react-dnd-anything": ["./src/index.ts"]
+      "@@/*": [".dumi/tmp/*"],
+      "react-dnd-anything": ["src"],
+      "react-dnd-anything/*": ["src/*", "*"]
     }
-  }
+  },
+  "include": [".dumi/**/*", ".dumirc.ts", "src/**/*"]
 }

@@ -1,61 +1,40 @@
-# React Dnd Anything
+# react-dnd-anything
 
-洞悉拖拽本质，让交互随心所欲。[官方文档](https://lexmin0412.github.io/react-dnd-anything)
+[![NPM version](https://img.shields.io/npm/v/react-dnd-anything.svg?style=flat)](https://npmjs.org/package/react-dnd-anything)
+[![NPM downloads](http://img.shields.io/npm/dm/react-dnd-anything.svg?style=flat)](https://npmjs.org/package/react-dnd-anything)
 
-<a href="https://lexmin0412.github.io/react-dnd-anything">
- <img src="https://github.com/lexmin0412/react-dnd-anything/blob/main/docs/images/docs_home_preview.png" />
-</a>
+洞悉拖拽本质，让交互随心所欲。
 
+## Usage
 
+TODO
 
-## 支持特性
+## Options
 
-- 🏠 列表拖拽排序
+TODO
 
-## Getting Started
+## Development
 
 ```bash
-npm i react-dnd-anything
+# install dependencies
+$ pnpm install
+
+# develop library by docs demo
+$ pnpm start
+
+# build library source code
+$ pnpm run build
+
+# build library source code in watch mode
+$ pnpm run build:watch
+
+# build docs
+$ pnpm run docs:build
+
+# check your project for potential problems
+$ pnpm run doctor
 ```
 
-## Use it in React
+## LICENSE
 
-```tsx
-import React, { useState } from 'react';
-import { DndAnything } from 'react-dnd-anything';
-
-const defaultList = [
-  {
-    id: '1',
-    title: 'item 1'
-  },
-  {
-    id: '2',
-    title: 'item 2'
-  },
-  {
-    id: '3',
-    title: 'item 3'
-  }
-]
-
-export default () => {
-
-  const [list, setList] = useState(defaultList)
-
-  const handleListUpdate = (list: any[]) => {
-    setList(list)
-  }
-
-  return (
-    <DndAnything
-      list={list}
-      onListUpdate={handleListUpdate}
-    />
-  )
-};
-```
-
-## 更新日志
-
-[点我查看](https://github.com/lexmin0412/react-dnd-anything/blob/main/CHANGELOG.md)
+MIT
