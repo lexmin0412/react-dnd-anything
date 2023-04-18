@@ -1,13 +1,17 @@
-import React, { useMemo, DragEvent, useState } from 'react';
+import React, { DragEvent, useMemo, useState } from 'react';
 import { DND_ITEM_CLASS_PREFIX as CLS_PREFIX } from './constants/index';
-import { DragAndDropItem } from './types';
 import './index.less';
+import { DragAndDropItem } from './types';
 
 export interface DragAndDropProps {
   /**
+   * 外层容器样式
+   */
+  style?: React.CSSProperties;
+  /**
    * 方向 vertical-垂直 horizontal-水平
    */
-  direction?: 'vertical' | 'horizontal'
+  direction?: 'vertical' | 'horizontal';
   /**
    * 数据列表
    */
@@ -51,6 +55,7 @@ export interface DragAndDropProps {
 export default function DragAndDrop(props: DragAndDropProps) {
   const {
     direction = 'vertical',
+    style,
     list,
     onListUpdate,
     onDragStart,
@@ -61,8 +66,10 @@ export default function DragAndDrop(props: DragAndDropProps) {
     draggingOverStyle,
   } = props;
 
-  const [currentDraggingItem, setCurrentDraggingItem] = useState<DragAndDropItem|null>(null); // 当前正在拖拽的item
-  const [currentOverItem, setCurrentOverItem] = useState<DragAndDropItem|null>(null); // 当前over的item
+  const [currentDraggingItem, setCurrentDraggingItem] =
+    useState<DragAndDropItem | null>(null); // 当前正在拖拽的item
+  const [currentOverItem, setCurrentOverItem] =
+    useState<DragAndDropItem | null>(null); // 当前over的item
 
   /**
    * item类名
@@ -78,7 +85,9 @@ export default function DragAndDrop(props: DragAndDropProps) {
     setCurrentDraggingItem(item);
 
     // 触发回调
-    onDragStart && onDragStart(event, item);
+    if (onDragStart) {
+      onDragStart(event, item);
+    }
   };
 
   const handleDragOver = (event: DragEvent, item: DragAndDropItem) => {
@@ -89,7 +98,9 @@ export default function DragAndDrop(props: DragAndDropProps) {
     }
 
     // 触发回调
-    onDragOver && onDragOver(event, item);
+    if (onDragOver) {
+      onDragOver(event, item);
+    }
   };
 
   const handleDrop = (event: DragEvent, item: DragAndDropItem) => {
@@ -113,16 +124,18 @@ export default function DragAndDrop(props: DragAndDropProps) {
     onListUpdate(toChangeList);
 
     // 触发回调
-    onDrop && onDrop(event, item);
+    if (onDrop) {
+      onDrop(event, item);
+    }
   };
 
   const renderChild = (props: DragAndDropItem) => {
-    const getItemClassNames = (item: DragAndDropItem) => {
+    const getItemClassNames = () => {
       let classList = [CLS_PREFIX];
       return classList.join(' ');
     };
 
-    const classNames = getItemClassNames(props);
+    const classNames = getItemClassNames();
     const isDraggingOver = currentOverItem?.id === props.id;
     const isDragging = currentDraggingItem?.id === props.id;
 
@@ -151,14 +164,14 @@ export default function DragAndDrop(props: DragAndDropProps) {
     );
   };
 
-  const containerStyles = useMemo(()=>{
+  const containerStyles = useMemo(() => {
+    const baseStyles = style || {};
     if (direction === 'horizontal') {
-      return {
-        display: 'flex',
-        flexWrap: 'wrap',
-      } as React.CSSProperties;
+      baseStyles.display = 'flex';
+      baseStyles.flexWrap = 'wrap';
     }
-  }, [direction])
+    return baseStyles;
+  }, [direction]);
 
   return (
     <div className={classNames} style={containerStyles}>
