@@ -20,6 +20,10 @@ nav:
 
 <code src="./demo/set_draw_image.tsx"></code>
 
+**禁用拖拽**
+
+<code src="./demo/disabled.tsx"></code>
+
 **横向 flex 布局**
 
 <code src="./demo/horizontal.tsx"></code>

@@ -4,6 +4,7 @@ import './index.less';
 import { DragAndDropItem } from './types';
 
 export interface DragAndDropProps {
+  draggable?: boolean;
   /**
    * 外层容器样式
    */
@@ -61,6 +62,7 @@ export default function DragAndDrop(props: DragAndDropProps) {
     onDragStart,
     onDragOver,
     onDrop,
+    draggable = true,
     renderChildren,
     draggingItemStyle,
     draggingOverStyle,
@@ -151,7 +153,7 @@ export default function DragAndDrop(props: DragAndDropProps) {
         onDragStart={(event) => handleDragStart(event, props)}
         onDragOver={(event) => handleDragOver(event, props)}
         onDrop={(event) => handleDrop(event, props)}
-        draggable={true}
+        draggable={draggable}
         style={{ ...itemStyle }}
       >
         {renderChildren
