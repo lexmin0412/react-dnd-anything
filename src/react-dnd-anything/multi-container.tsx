@@ -65,6 +65,14 @@ export interface DragAndDropProps {
       isDraggingOver: boolean;
     },
   ) => JSX.Element | JSX.Element[];
+  /**
+   * 最外层容器类名
+   */
+  wrapperClassName?: string;
+  /**
+   * 分组容器类名
+   */
+  containerClassName?: string;
 }
 
 export default function DragAndDrop(props: DragAndDropProps) {
@@ -79,20 +87,14 @@ export default function DragAndDrop(props: DragAndDropProps) {
     renderChildren,
     draggingItemStyle,
     draggingOverStyle,
+    wrapperClassName,
+    containerClassName,
   } = props;
 
   const [currentDraggingItem, setCurrentDraggingItem] =
     useState<DragAndDropItem | null>(null); // 当前正在拖拽的item
   const [currentOverItem, setCurrentOverItem] =
     useState<DragAndDropItem | null>(null); // 当前over的item
-
-  /**
-   * item类名
-   */
-  const classNames = useMemo(() => {
-    let classList = [CLS_PREFIX];
-    return classList.join(' ');
-  }, []);
 
   const handleDragStart = (
     event: DragEvent,
@@ -251,11 +253,14 @@ export default function DragAndDrop(props: DragAndDropProps) {
   }, [direction]);
 
   return (
-    <div>
+    <div className={wrapperClassName}>
       {dataGroup.map((group) => {
-        console.log('group.list', group.list);
         return (
-          <div className={classNames} style={containerStyles} key={group.id}>
+          <div
+            className={containerClassName}
+            style={containerStyles}
+            key={group.id}
+          >
             {group.list ? (
               group.list.map((item) => {
                 return renderChild(item, {

@@ -40,6 +40,10 @@ nav:
 
 <code src="./demo/cross_container.tsx"></code>
 
+**自定义容器样式**
+
+<code src="./demo/custom_container_style.tsx"></code>
+
 ### 关于 HTML5 拖拽
 
 - [Drag Event - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event)
