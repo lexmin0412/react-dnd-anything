@@ -4,6 +4,23 @@ import { DND_ITEM_CLASS_PREFIX as CLS_PREFIX } from './constants/index';
 import './index.less';
 import { DragAndDropItem } from './types';
 
+type DataGroupItem = {
+  /**
+   * 容器id
+   */
+  id: string;
+  /**
+   * 容器标题
+   */
+  title: string;
+  /**
+   * 数据列表
+   */
+  list: DragAndDropItem[];
+};
+
+type DataGroup = DataGroupItem[];
+
 export interface DragAndDropProps {
   /**
    * 外层容器样式
@@ -16,25 +33,11 @@ export interface DragAndDropProps {
   /**
    * 数据集
    */
-  dataGroup: Array<{
-    /**
-     * 容器id
-     */
-    id: string;
-    /**
-     * 数据列表
-     */
-    list: DragAndDropItem[];
-  }>;
+  dataGroup: DataGroup;
   /**
    * 数据更新回调
    */
-  onDataGroupChange: (
-    dataGroup: Array<{
-      id: string;
-      list: DragAndDropItem[];
-    }>,
-  ) => void;
+  onDataGroupChange: (dataGroup: DataGroup) => void;
   /**
    * 拖拽开始事件
    */
@@ -73,6 +76,20 @@ export interface DragAndDropProps {
    * 分组容器类名
    */
   containerClassName?: string;
+  /**
+   * 自定义分组内容渲染
+   * @param groupContent 当前分组内容
+   * @param options 附属信息
+   */
+  renderGroup: (
+    groupContent: React.ReactNode,
+    options: {
+      /**
+       * 分组信息
+       */
+      group: DataGroupItem;
+    },
+  ) => React.ReactNode;
 }
 
 export default function DragAndDrop(props: DragAndDropProps) {
@@ -89,6 +106,7 @@ export default function DragAndDrop(props: DragAndDropProps) {
     draggingOverStyle,
     wrapperClassName,
     containerClassName,
+    renderGroup,
   } = props;
 
   const [currentDraggingItem, setCurrentDraggingItem] =
@@ -252,14 +270,47 @@ export default function DragAndDrop(props: DragAndDropProps) {
     return baseStyles;
   }, [direction]);
 
+  const handleDropContainer = (
+    event: DragEvent,
+    targetGroup: DataGroupItem,
+  ) => {
+    console.log('handleDropContainer', event, targetGroup);
+    console.log('currentDraggingItem', currentDraggingItem);
+    const groupList =
+      dataGroup.find((ele) => ele.id === targetGroup.id)?.list || [];
+    console.log('groupList', groupList);
+    if (groupList.length > 0) {
+      return;
+    }
+    const newDataGroup = [...dataGroup];
+
+    // 先把当前拖拽的节点从原列表中删除
+    const sourceList =
+      newDataGroup.find((ele) => ele.id === currentDraggingItem?.id)?.list ||
+      [];
+    const sourceIndex = sourceList.findIndex(
+      (ele) => ele.id === currentDraggingItem?.id,
+    );
+    sourceList.splice(sourceIndex, 1);
+
+    // 插入到新列表中
+    const targetList =
+      newDataGroup.find((ele) => ele.id === targetGroup.id)?.list || [];
+    targetList.push(currentDraggingItem!);
+
+    onDataGroupChange(newDataGroup);
+  };
+
   return (
     <div className={wrapperClassName}>
       {dataGroup.map((group) => {
-        return (
+        const groupContent = (
           <div
             className={containerClassName}
             style={containerStyles}
             key={group.id}
+            onDragOver={(e) => e.preventDefault()}
+            onDrop={(event) => handleDropContainer(event, group)}
           >
             {group.list ? (
               group.list.map((item) => {
@@ -272,6 +323,11 @@ export default function DragAndDrop(props: DragAndDropProps) {
             )}
           </div>
         );
+        return renderGroup
+          ? renderGroup(groupContent, {
+              group,
+            })
+          : groupContent;
       })}
     </div>
   );

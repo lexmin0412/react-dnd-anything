@@ -44,6 +44,12 @@ nav:
 
 <code src="./demo/custom_container_style.tsx"></code>
 
+**自定义容器内容**
+
+下面我们给容器加上标题属性，以区分不同容器。
+
+<code src="./demo/custom_container_content.tsx"></code>
+
 ### 关于 HTML5 拖拽
 
 - [Drag Event - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Document/drag_event)
