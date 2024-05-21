@@ -115,10 +115,12 @@ export default () => {
   const [dataGroup, setDataGroup] = useState([
     {
       id: 'data1',
+      title: 'Group1',
       list: defaultList,
     },
     {
       id: 'data2',
+      title: 'Group2',
       list: defaultList2,
     },
   ]);
