@@ -12,7 +12,7 @@ type DataGroupItem = {
   /**
    * 容器标题
    */
-  title: string;
+  title?: string;
   /**
    * 数据列表
    */
@@ -81,7 +81,7 @@ export interface DragAndDropProps {
    * @param groupContent 当前分组内容
    * @param options 附属信息
    */
-  renderGroup: (
+  renderGroup?: (
     groupContent: React.ReactNode,
     options: {
       /**
