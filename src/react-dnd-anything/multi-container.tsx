@@ -12,7 +12,7 @@ type DataGroupItem = {
   /**
    * 容器标题
    */
-  title?: string;
+  title: string;
   /**
    * 数据列表
    */
