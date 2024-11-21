@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkreact_dnd_anything=self.webpackChunkreact_dnd_anything||[]).push([[904],{15561:function(d,t,n){n.r(t),n.d(t,{demos:function(){return s}});var u=n(67294),s={}},2687:function(d,t,n){n.r(t),n.d(t,{texts:function(){return u}});const u=[]}}]);
