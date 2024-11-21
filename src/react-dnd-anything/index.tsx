@@ -26,6 +26,10 @@ export interface DragAndDropProps {
    */
   onDragStart?: (event: DragEvent, item: DragAndDropItem) => void;
   /**
+   * 拖拽元素样式
+   */
+  getItemStyle?: (item: DragAndDropItem) => React.CSSProperties;
+  /**
    * 正在拖拽元素的样式
    */
   draggingItemStyle?: React.CSSProperties;
@@ -64,6 +68,7 @@ export default function DragAndDrop(props: DragAndDropProps) {
     onDrop,
     draggable = true,
     renderChildren,
+    getItemStyle,
     draggingItemStyle,
     draggingOverStyle,
   } = props;
@@ -142,6 +147,7 @@ export default function DragAndDrop(props: DragAndDropProps) {
     const isDragging = currentDraggingItem?.id === props.id;
 
     const itemStyle = {
+      ...getItemStyle?.(props),
       ...(isDraggingOver ? draggingOverStyle : {}),
       ...(isDragging ? draggingItemStyle : {}),
     };
